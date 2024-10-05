@@ -53,13 +53,13 @@ To install and run SlotSync locally, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/slotsync.git
+    git clone https://github.com/TheMercury1229/SlotSync.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd slotsync
+    cd SlotSync
     ```
 
 3. Install dependencies:
@@ -81,13 +81,6 @@ To install and run SlotSync locally, follow these steps:
 ## Configuration
 
 SlotSync requires several environment variables to connect to external services:
-
-- **NYLAS_CLIENT_ID**: Nylas API client ID
-- **NYLAS_CLIENT_SECRET**: Nylas API client secret
-- **UPLOADTHING_API_KEY**: API key for UploadThing
-- **AUTH_SECRET**: Secret for managing user authentication (Auth.js)
-- **NEXTAUTH_URL**: URL for authentication callbacks (Auth.js)
-- **NEXT_PUBLIC_SITE_URL**: URL where the app will be deployed
 
 To configure these, create a `.env` file in the root directory and add the appropriate values:
 
