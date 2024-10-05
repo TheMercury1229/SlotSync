@@ -3,7 +3,7 @@
 import { parseWithZod } from "@conform-to/zod";
 import prisma from "./lib/db";
 import { useRequireUser } from "./lib/hooks";
-import { onBoardingSchemaValidation } from "./lib/zodSchemas";
+import { onBoardingSchemaValidation, SettingsSchema } from "./lib/zodSchemas";
 import { redirect } from "next/navigation";
 
 export async function OnBoardingAction(prevState: any, formData: FormData) {
@@ -41,4 +41,22 @@ export async function OnBoardingAction(prevState: any, formData: FormData) {
 
   // Return the success response or other actions
   return redirect("/onboarding/grant-id");
+}
+
+export async function SettingsAction(prevState: any, formData: FormData) {
+  const session = await useRequireUser();
+  const submission = await parseWithZod(formData, {
+    schema: SettingsSchema,
+  });
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+  const data = await prisma.user.update({
+    where: { id: session.user?.id },
+    data: {
+      name: submission.value.fullName,
+      image: submission.value.profilePic,
+    },
+  });
+  return redirect("/dashboard");
 }
