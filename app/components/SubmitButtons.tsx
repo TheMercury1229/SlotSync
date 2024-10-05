@@ -3,7 +3,21 @@ import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
+interface iAppProps {
+  text: string;
+  variant?:
+    | "default"
+    | "outline"
+    | "ghost"
+    | "link"
+    | "secondary"
+    | "destructive"
+    | null
+    | undefined;
+  className?: string;
+}
 export const GoogleAuthButton = () => {
   const { pending } = useFormStatus();
   return (
@@ -50,6 +64,28 @@ export const GithubAuthButton = () => {
         >
           <Image src="/github.svg" alt="Github Icon" width={20} height={20} />
           Sign In with Github
+        </Button>
+      )}
+    </>
+  );
+};
+
+export const SubmitButton = ({ text, variant, className }: iAppProps) => {
+  const { pending } = useFormStatus();
+  return (
+    <>
+      {pending ? (
+        <Button disabled variant={"outline"} className={cn("w-fit", className)}>
+          <Loader2 className="size-4 mr-2 animate-spin" />
+          Please Wait
+        </Button>
+      ) : (
+        <Button
+          type="submit"
+          variant={variant}
+          className={cn("w-fit", className)}
+        >
+          {text}
         </Button>
       )}
     </>

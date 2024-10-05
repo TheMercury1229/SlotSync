@@ -41,7 +41,7 @@ export default function AuthModal() {
 
           <div className="flex items-center justify-center">
             <hr className="flex-1 border-t border-gray-300" />
-            <span className="px-4 text-black/40 text-center uppercase text-lg">
+            <span className="px-4 text-black/40 dark:text-white/40 text-center uppercase text-lg">
               Or
             </span>
             <hr className="flex-1 border-t border-gray-300" />
