@@ -26,10 +26,14 @@ const fetchUser = async (userId: string) => {
     },
     select: {
       username: true,
+      grantId: true,
     },
   });
   if (!session?.username) {
     return redirect("/onboarding");
+  }
+  if (!session?.grantId) {
+    return redirect("/onboarding/grant-id");
   }
   return session;
 };
