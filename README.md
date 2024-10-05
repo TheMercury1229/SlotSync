@@ -135,9 +135,9 @@ Please make sure your code follows the existing code style and passes all lintin
 
 Feel free to reach out if you have any questions or issues !
 
-###MySocials:
+##MySocials:
 
--**Instagram**: [themercury1229](https://www.instagram.com/themercury1229/)
--**Twitter**: [TheMercury1229](https://x.com/TheMercury1229)
--**LinkedIn**:[Hardik Gujrathi](https://www.linkedin.com/in/hardik-gujrathi-b7ba49294/)
+- **Instagram** : [themercury1229](https://www.instagram.com/themercury1229/)
+- **Twitter** : [TheMercury1229](https://x.com/TheMercury1229)
+- **LinkedIn** : [Hardik Gujrathi](https://www.linkedin.com/in/hardik-gujrathi-b7ba49294/)
 
