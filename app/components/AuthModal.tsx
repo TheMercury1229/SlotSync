@@ -25,7 +25,7 @@ export default function AuthModal() {
             height={40}
           />
           <h4 className="text-3xl font-semibold">
-            Slot <span className="text-blue-500">Sync</span>
+            Slot <span className="text-primary">Sync</span>
           </h4>
         </DialogHeader>
         <div className="flex flex-col mt-5 gap-4">
