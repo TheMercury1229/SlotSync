@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
   ExternalLinkIcon,
-  Link2,
   Pen,
   PlusCircleIcon,
   SettingsIcon,
@@ -23,6 +22,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { CopyLinkMenu } from "../components/CopyLinkMenu";
 
 async function getUser(id: string) {
   const user = await prisma.user.findUnique({
@@ -106,13 +106,14 @@ export default async function DashboardPage() {
                             Preview
                           </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Link2 className="size-4 mr-2" />
-                          Copy{" "}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Pen className="size-4 mr-2" />
-                          Edit
+                        <CopyLinkMenu
+                          meetingUrl={`${process.env.NEXT_PUBLIC_URL}/${data.username}/${event.url}`}
+                        />
+                        <DropdownMenuItem asChild>
+                          <Link href={`/dashboard/event/${event.id}`}>
+                            <Pen className="size-4 mr-2" />
+                            Edit
+                          </Link>
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                       <DropdownMenuSeparator />

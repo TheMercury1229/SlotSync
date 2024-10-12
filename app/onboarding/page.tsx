@@ -38,7 +38,7 @@ export default function OnboardingPage() {
       <Card>
         <CardHeader>
           <CardTitle>
-            Welcome to Slot<span className="text-blue-500 inline">Sync</span>
+            Welcome to Slot<span className="text-primary inline">Sync</span>
           </CardTitle>
           <CardDescription>
             We need the following information to set up your account
