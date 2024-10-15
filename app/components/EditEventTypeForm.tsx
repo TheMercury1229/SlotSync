@@ -1,5 +1,5 @@
 "use client";
-import { CreateEventTypeAction } from "@/app/actions";
+import { CreateEventTypeAction, EditEventTypeAction } from "@/app/actions";
 import { SubmitButton } from "@/app/components/SubmitButtons";
 import { eventTypeSchema } from "@/app/lib/zodSchemas";
 import { Button } from "@/components/ui/button";
@@ -46,9 +46,10 @@ export const EditEventTypeForm = ({
   platform,
   duration,
 }: EditEventTypeFormProps) => {
-  const [activePlatform, setActivePlatform] =
-    useState<VideoCallPlatform>("Zoom Meeting");
-  const [lastResult, action] = useFormState(CreateEventTypeAction, null);
+  const [activePlatform, setActivePlatform] = useState<VideoCallPlatform>(
+    platform as VideoCallPlatform
+  );
+  const [lastResult, action] = useFormState(EditEventTypeAction, null);
   const [form, fields] = useForm({
     lastResult,
     onValidate({ formData }) {
@@ -61,13 +62,19 @@ export const EditEventTypeForm = ({
     <div className="w-full h-full flex flex-1 items-center justify-center">
       <Card>
         <CardHeader>
-          <CardTitle>Add new appointment type</CardTitle>
+          <CardTitle>Edit appointment type</CardTitle>
           <CardDescription>
-            Create a new appointment type to start accepting appointments from
-            people.
+            Edit appointment type to start accepting appointments from people.
           </CardDescription>
         </CardHeader>
         <form id={form.id} onSubmit={form.onSubmit} action={action} noValidate>
+          <input
+            type="hidden"
+            name="id"
+            value={id}
+            readOnly={true}
+            aria-hidden="true"
+          />
           <CardContent className="grid gap-y-5">
             <div className="gap-y-2 flex flex-col">
               <Label>Title</Label>
@@ -75,7 +82,7 @@ export const EditEventTypeForm = ({
                 placeholder="30 Minute Meeting"
                 name={fields.title.name}
                 key={fields.title.key}
-                defaultValue={fields.title.initialValue}
+                defaultValue={title}
               />
               <p className="text-red-500 text-sm">{fields.title.errors}</p>
             </div>
@@ -90,7 +97,7 @@ export const EditEventTypeForm = ({
                   className="border-l-0 rounded-l-none"
                   name={fields.url.name}
                   key={fields.url.key}
-                  defaultValue={fields.url.initialValue}
+                  defaultValue={url}
                 />
               </div>
               <p className="text-red-500 text-sm">{fields.url.errors}</p>
@@ -101,7 +108,7 @@ export const EditEventTypeForm = ({
                 placeholder="Short description of the appointment type"
                 name={fields.description.name}
                 key={fields.description.key}
-                defaultValue={fields.description.initialValue}
+                defaultValue={description}
               />
               <p className="text-red-500 text-sm">
                 {fields.description.errors}
@@ -112,7 +119,7 @@ export const EditEventTypeForm = ({
               <Select
                 name={fields.duration.name}
                 key={fields.duration.key}
-                defaultValue={fields.duration.initialValue}
+                defaultValue={duration.toString()}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select duration" />
@@ -135,7 +142,7 @@ export const EditEventTypeForm = ({
                 type="hidden"
                 name={fields.videoCallSoftware.name}
                 key={fields.videoCallSoftware.key}
-                defaultValue={fields.videoCallSoftware.initialValue}
+                defaultValue={platform}
                 value={activePlatform}
               />
               <ButtonGroup>

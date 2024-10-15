@@ -260,5 +260,33 @@ export async function DeleteEventAction(formData: FormData) {
       calendarId: userData.grantEmail as string,
     },
   });
-  revalidatePath("/dashboard/meetings");
+  redirect("/dashboard/meetings");
+}
+
+export async function EditEventTypeAction(prevState: any, formData: FormData) {
+  const session = await useRequireUser();
+  if (!session.user) {
+    return redirect("/login");
+  }
+  const submission = parseWithZod(formData, {
+    schema: eventTypeSchema,
+  });
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  await prisma.eventType.update({
+    where: {
+      id: formData.get("id") as string,
+      userId: session.user?.id,
+    },
+    data: {
+      title: submission.value.title,
+      description: submission.value.description,
+      duration: submission.value.duration,
+      url: submission.value.url,
+      videoCallSoftware: submission.value.videoCallSoftware,
+    },
+  });
+  redirect("/dashboard");
 }
