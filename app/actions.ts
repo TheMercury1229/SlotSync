@@ -288,5 +288,57 @@ export async function EditEventTypeAction(prevState: any, formData: FormData) {
       videoCallSoftware: submission.value.videoCallSoftware,
     },
   });
+  revalidatePath("/dashboard");
   redirect("/dashboard");
+}
+
+export async function EditEventTypeStatusAction(
+  prevState: any,
+  {
+    eventTypeId,
+    isChecked,
+  }: {
+    eventTypeId: string;
+    isChecked: boolean;
+  }
+) {
+  try {
+    const session = await useRequireUser();
+    if (!session.user) {
+      return redirect("/login");
+    }
+    await prisma.eventType.updateMany({
+      where: {
+        id: eventTypeId,
+        userId: session.user?.id,
+      },
+      data: {
+        active: isChecked,
+      },
+    });
+    revalidatePath("/dashboard");
+    return {
+      status: "success",
+      message: "Event Type Status Updated",
+    };
+  } catch (error: any) {
+    return {
+      status: "error",
+      message: "Something went wrong",
+    };
+  }
+}
+
+export async function DeleteEventTypeAction(formData: FormData) {
+  const session = await useRequireUser();
+  if (!session.user) {
+    return redirect("/login");
+  }
+  await prisma.eventType.delete({
+    where: {
+      id: formData.get("id") as string,
+      userId: session.user?.id,
+    },
+  });
+  return redirect("/dashboard");
 }

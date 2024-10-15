@@ -23,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CopyLinkMenu } from "../components/CopyLinkMenu";
+import { EventTypeSwitch } from "../components/EventTypeSwitch";
 
 async function getUser(id: string) {
   const user = await prisma.user.findUnique({
@@ -117,9 +118,11 @@ export default async function DashboardPage() {
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <Trash className="size-4 mr-2" />
-                        Delete
+                      <DropdownMenuItem asChild>
+                        <Link href={"/dashboard/event/" + event.id + "/delete"}>
+                          <Trash className="size-4 mr-2" />
+                          Delete
+                        </Link>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -140,7 +143,10 @@ export default async function DashboardPage() {
                   </div>
                 </Link>
                 <div className="bg-muted/50 px-5 py-3 flex justify-between items-center">
-                  <Switch />
+                  <EventTypeSwitch
+                    initialCheck={event.active}
+                    eventTypeId={event.id}
+                  />
                   <Button asChild>
                     <Link href={`/dashboard/event/${event.id}`}>
                       Edit Event
