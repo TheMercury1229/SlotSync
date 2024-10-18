@@ -60,19 +60,19 @@ export default async function MeetingsPage() {
           </CardHeader>
           <CardContent>
             {data.data?.map((event) => (
-              <form action={DeleteEventAction}>
+              <form action={DeleteEventAction} key={event.id}>
                 <input type="hidden" name="eventId" value={event.id} />
                 <div className="grid gap-4 grid-cols-1 md:grid-cols-3 justify-between items-center p-2 bg-primary/10 rounded-md">
                   <div>
                     <p className="text-muted-foreground text-sm">
                       {format(
-                        fromUnixTime(event.when.startTime),
+                        fromUnixTime(event?.when.startTime),
                         "EEE, dd MMM"
                       )}
                     </p>
                     <p className="text-muted-foreground text-xs pt-1">
-                      {format(fromUnixTime(event.when.startTime), "hh:mm a")} -{" "}
-                      {format(fromUnixTime(event.when.endTime), "hh:mm a")}
+                      {format(fromUnixTime(event?.when.startTime), "hh:mm a")} -{" "}
+                      {format(fromUnixTime(event?.when.endTime), "hh:mm a")}
                     </p>
                     <div className="flex items-center mt-1">
                       <Video className="size-4 mr-2 text-primary" />
