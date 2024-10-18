@@ -3,7 +3,7 @@ import prisma from "@/app/lib/db";
 import { nylas } from "@/app/lib/nylas";
 import { Button } from "@/components/ui/button";
 import { Prisma } from "@prisma/client";
-import { format, formatDate } from "date-fns";
+import { format } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
