@@ -145,8 +145,7 @@ export const EditEventTypeForm = ({
                 defaultValue={platform}
                 value={activePlatform}
               />
-              <ButtonGroup>
-                <Button
+              {/* <Button
                   type="button"
                   onClick={() => setActivePlatform("Zoom Meeting")}
                   className="w-full"
@@ -155,18 +154,18 @@ export const EditEventTypeForm = ({
                   }
                 >
                   Zoom
-                </Button>
-                <Button
-                  type="button"
-                  onClick={() => setActivePlatform("Google Meet")}
-                  className="w-full"
-                  variant={
-                    activePlatform === "Google Meet" ? "secondary" : "outline"
-                  }
-                >
-                  Google Meet
-                </Button>
-                <Button
+                </Button> */}
+              <Button
+                type="button"
+                onClick={() => setActivePlatform("Google Meet")}
+                className="w-full"
+                variant={
+                  activePlatform === "Google Meet" ? "secondary" : "outline"
+                }
+              >
+                Google Meet
+              </Button>
+              {/* <Button
                   type="button"
                   onClick={() => setActivePlatform("Microsoft Teams")}
                   className="w-full"
@@ -177,8 +176,7 @@ export const EditEventTypeForm = ({
                   }
                 >
                   Microsoft Teams
-                </Button>
-              </ButtonGroup>
+                </Button> */}
               <p className="text-red-500 text-sm">
                 {fields.videoCallSoftware.errors}
               </p>
