@@ -23,7 +23,7 @@ SlotSync streamlines the process of scheduling meetings by allowing users to sha
 
 You can access the live version of SlotSync at:
 
-[https://your-deployment-url.com](https://your-deployment-url.com)
+[Slot Sync](https://slot-sync.vercel.app)
 
 ## Features
 
